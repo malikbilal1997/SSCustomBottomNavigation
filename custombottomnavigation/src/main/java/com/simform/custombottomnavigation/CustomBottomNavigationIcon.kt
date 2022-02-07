@@ -7,7 +7,6 @@ import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.RippleDrawable
-import android.os.Build
 import android.util.AttributeSet
 import android.util.Log
 import android.util.TypedValue
@@ -23,7 +22,7 @@ import kotlinx.android.synthetic.main.custom_bottom_navigation_icon.view.*
 class CustomBottomNavigationIcon : RelativeLayout, LayoutContainer {
 
     companion object {
-        const val EMPTY_VALUE = "empty"
+        const val EMPTY_VALUE = 0
     }
 
     var defaultIconColor = 0
@@ -94,20 +93,17 @@ class CustomBottomNavigationIcon : RelativeLayout, LayoutContainer {
             }
         }
 
-    var count: String? = EMPTY_VALUE
+    var badge: Int = EMPTY_VALUE
         set(value) {
             field = value
             if (allowDraw) {
-                if (count != null && count == EMPTY_VALUE) {
+                if (badge == EMPTY_VALUE) {
                     tv_count.text = ""
                     tv_count.visibility = View.INVISIBLE
                 } else {
-                    if (count != null && count?.length ?: 0 >= 3) {
-                        field = count?.substring(0, 1) + ".."
-                    }
-                    tv_count.text = count
+                    tv_count.text = badge.toString()
                     tv_count.visibility = View.VISIBLE
-                    val scale = if (count?.isEmpty() == true) 0.5f else 1f
+                    val scale = if (badge == 0) 0.5f else 1f
                     tv_count.scaleX = scale
                     tv_count.scaleY = scale
                 }
@@ -190,7 +186,7 @@ class CustomBottomNavigationIcon : RelativeLayout, LayoutContainer {
             val d = GradientDrawable()
             d.setColor(circleColor)
             d.shape = GradientDrawable.OVAL
-            if (Build.VERSION.SDK_INT >= 21 && !isEnabledCell) {
+            if (!isEnabledCell) {
                 fl.background = RippleDrawable(ColorStateList.valueOf(rippleColor), null, d)
             } else {
                 fl.runAfterDelay(200) {
@@ -244,7 +240,7 @@ class CustomBottomNavigationIcon : RelativeLayout, LayoutContainer {
             return
 
         icon = icon
-        count = count
+        badge = badge
         iconSize = iconSize
         iconTextTypeface = iconTextTypeface
         iconTextColor = iconTextColor

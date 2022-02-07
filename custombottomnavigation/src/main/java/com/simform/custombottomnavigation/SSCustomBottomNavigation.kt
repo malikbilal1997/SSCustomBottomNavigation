@@ -9,7 +9,6 @@ import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.Color
 import android.graphics.Typeface
-import android.os.Build
 import android.util.AttributeSet
 import android.util.LayoutDirection
 import android.util.Log
@@ -254,7 +253,7 @@ class SSCustomBottomNavigation : FrameLayout {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         if (selectedIndex == -1) {
             bezierView.bezierX =
-                if (Build.VERSION.SDK_INT >= 21 && layoutDirection == LayoutDirection.RTL) measuredWidth + dipf(
+                if (layoutDirection == LayoutDirection.RTL) measuredWidth + dipf(
                     context,
                     72
                 ) else -dipf(context, 72)
@@ -278,11 +277,11 @@ class SSCustomBottomNavigation : FrameLayout {
         this.cbnMenuItems.forEachIndexed { _, cbnMenuItem ->
             add(
                 Model(
-                    destinationId = cbnMenuItem.destinationId,
+                    navId = cbnMenuItem.navId,
                     icon = cbnMenuItem.icon,
                     id = cbnMenuItem.id,
                     text = cbnMenuItem.text,
-                    count = cbnMenuItem.count
+                    badge = cbnMenuItem.badge
                 )
             )
         }
@@ -311,7 +310,7 @@ class SSCustomBottomNavigation : FrameLayout {
         // setup destination change listener to properly sync the back button press
         navController.addOnDestinationChangedListener { _, destination, _ ->
             for (i in cbnMenuItems.indices) {
-                if (matchDestination(destination, cbnMenuItems[i].destinationId)) {
+                if (matchDestination(destination, cbnMenuItems[i].navId)) {
                     if (selectedIndex != i && isAnimating) {
                         // this is triggered internally, even if the animations looks kinda funky (if duration is long)
                         // but we will sync with the destination
@@ -344,7 +343,7 @@ class SSCustomBottomNavigation : FrameLayout {
     // source code referenced from the actual JetPack Navigation Component
     // refer to the original source code
     private fun navigateToDestination(navController: NavController, itemCbn: Model) {
-        if (itemCbn.destinationId == -1) {
+        if (itemCbn.navId == -1) {
             throw RuntimeException("please set a valid id, unable the navigation!")
         }
         val builder = NavOptions.Builder()
@@ -358,7 +357,7 @@ class SSCustomBottomNavigation : FrameLayout {
         val options = builder.build()
         try {
             navController.popBackStack()
-            navController.navigate(itemCbn.destinationId, null, options)
+            navController.navigate(itemCbn.navId, null, options)
         } catch (e: IllegalArgumentException) {
             Log.w("TAG", "unable to navigate!", e)
         }
@@ -392,8 +391,8 @@ class SSCustomBottomNavigation : FrameLayout {
             val params = LinearLayout.LayoutParams(0, heightCell, 1f)
             layoutParams = params
             icon = model.icon
-            iconText = context.getString(model.text)
-            count = context.getString(model.count)
+            badge = model.badge
+            iconText = model.text
             defaultIconColor = this@SSCustomBottomNavigation.defaultIconColor
             selectedIconColor = this@SSCustomBottomNavigation.selectedIconColor
             iconTextTypeface = this@SSCustomBottomNavigation.iconTextTypeface
@@ -543,15 +542,15 @@ class SSCustomBottomNavigation : FrameLayout {
     fun setCount(id: Int, count: Int) {
         val model = getModelById(id) ?: return
         val pos = getModelPosition(id)
-        model.count = count
-        cells[pos].count = context.getString(count)
+        model.badge = 0
+        cells[pos].badge = count
     }
 
     fun clearCount(id: Int) {
         val model = getModelById(id) ?: return
         val pos = getModelPosition(id)
-        model.count = R.string.empty_value
-        cells[pos].count = context.getString(R.string.empty_value)
+        model.badge = 0
+        cells[pos].badge = 0
     }
 
     fun clearAllCounts() {

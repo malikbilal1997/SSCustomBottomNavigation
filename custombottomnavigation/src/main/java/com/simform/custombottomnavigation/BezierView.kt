@@ -3,7 +3,6 @@ package com.simform.custombottomnavigation
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
 import android.graphics.PointF
@@ -27,7 +26,8 @@ class BezierView : View {
     private var bezierOuterHeight = 0f
     private var bezierInnerWidth = 0f
     private var bezierInnerHeight = 0f
-    private val shadowHeight = dipf(context, 35)   // this height will change bottomnavigation bg height
+    private val shadowHeight =
+        dipf(context, 35)   // This height will change bottom navigation background height
 
     var color = 0
         set(value) {
@@ -85,18 +85,27 @@ class BezierView : View {
                 field = 7
                 invalidate()
             } else {
-                    field = value
-                    invalidate()
-                }
+                field = value
+                invalidate()
             }
+        }
 
 
     @SuppressLint("NewApi")
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int, defStyleRes: Int) : super(context, attrs, defStyleAttr, defStyleRes) {
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int, defStyleRes: Int) : super(
+        context,
+        attrs,
+        defStyleAttr,
+        defStyleRes
+    ) {
         initializeViews()
     }
 
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(
+        context,
+        attrs,
+        defStyleAttr
+    ) {
         initializeViews()
     }
 
@@ -190,8 +199,22 @@ class BezierView : View {
 
         path!!.lineTo(innerArray[0].x, innerArray[0].y)
         path.lineTo(innerArray[1].x, innerArray[1].y)
-        path.cubicTo(innerArray[2].x, innerArray[2].y, innerArray[3].x, innerArray[3].y, innerArray[4].x, innerArray[4].y)
-        path.cubicTo(innerArray[5].x, innerArray[5].y, innerArray[6].x, innerArray[6].y, innerArray[7].x, innerArray[7].y)
+        path.cubicTo(
+            innerArray[2].x,
+            innerArray[2].y,
+            innerArray[3].x,
+            innerArray[3].y,
+            innerArray[4].x,
+            innerArray[4].y
+        )
+        path.cubicTo(
+            innerArray[5].x,
+            innerArray[5].y,
+            innerArray[6].x,
+            innerArray[6].y,
+            innerArray[7].x,
+            innerArray[7].y
+        )
         path.lineTo(innerArray[8].x, innerArray[8].y)
         path.lineTo(innerArray[9].x, innerArray[9].y)
         path.lineTo(innerArray[10].x, innerArray[10].y)
@@ -222,8 +245,22 @@ class BezierView : View {
 
         path!!.lineTo(progressArray[0].x, progressArray[0].y)
         path.lineTo(progressArray[1].x, progressArray[1].y)
-        path.cubicTo(progressArray[2].x, progressArray[2].y, progressArray[3].x, progressArray[3].y, progressArray[4].x, progressArray[4].y)
-        path.cubicTo(progressArray[5].x, progressArray[5].y, progressArray[6].x, progressArray[6].y, progressArray[7].x, progressArray[7].y)
+        path.cubicTo(
+            progressArray[2].x,
+            progressArray[2].y,
+            progressArray[3].x,
+            progressArray[3].y,
+            progressArray[4].x,
+            progressArray[4].y
+        )
+        path.cubicTo(
+            progressArray[5].x,
+            progressArray[5].y,
+            progressArray[6].x,
+            progressArray[6].y,
+            progressArray[7].x,
+            progressArray[7].y
+        )
         path.lineTo(progressArray[8].x, progressArray[8].y)
         path.lineTo(progressArray[9].x, progressArray[9].y)
         path.lineTo(progressArray[10].x, progressArray[10].y)

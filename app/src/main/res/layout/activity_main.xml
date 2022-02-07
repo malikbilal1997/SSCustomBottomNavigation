@@ -56,7 +56,6 @@
             app:ss_backgroundBottomDrawable="@drawable/bottom_drawable"
             app:ss_circleColor="#ff6f00"
             app:ss_countBackgroundColor="#ff6f00"
-            app:ss_countTextColor="#ffffff"
             app:ss_countTypeface="fonts/graphik_semibold.ttf"
             app:ss_defaultIconColor="@color/color_black"
             app:ss_iconTextColor="@color/color_black"

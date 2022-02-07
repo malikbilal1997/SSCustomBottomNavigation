@@ -5,13 +5,16 @@ import androidx.annotation.IdRes
 import androidx.annotation.StringRes
 
 data class Model(
+
+    val id: Int = -1,
+
     @DrawableRes
     val icon: Int = 0,
+
     @IdRes
-    val destinationId: Int = -1,
-    val id: Int = -1,
-    @StringRes
-    val text: Int = 0,
-    @StringRes
-    var count: Int = R.string.empty_value
+    val navId: Int = -1,
+
+    var badge: Int = 0,
+
+    val text: String = ""
 )

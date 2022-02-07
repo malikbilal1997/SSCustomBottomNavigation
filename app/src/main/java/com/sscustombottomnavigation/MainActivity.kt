@@ -47,44 +47,41 @@ class MainActivity : AppCompatActivity() {
                 Model(
                     icon = R.drawable.ic_home,
                     id = ID_HOME,
-                    text = R.string.title_home,
+                    text = getString(R.string.title_home),
                 )
             )
             add(
                 Model(
                     icon = R.drawable.ic_favorite_border_black,
                     id = ID_EXPLORE,
-                    text = R.string.title_favorite,
-                    count = R.string.empty_value
+                    text = getString(R.string.title_favorite),
                 )
             )
             add(
                 Model(
-                    R.drawable.ic_message,
+                    icon = R.drawable.ic_message,
                     id = ID_MESSAGE,
-                    text = R.string.title_chat,
-                    count = R.string.empty_value
+                    text = getString(R.string.title_chat),
                 )
             )
             add(
                 Model(
-                    R.drawable.ic_notification,
+                    icon = R.drawable.ic_notification,
                     id = ID_NOTIFICATION,
-                    text = R.string.title_notifications,
-                    count = R.string.count
+                    text = getString(R.string.title_notifications),
+                    badge = 10
                 )
             )
             add(
                 Model(
-                    R.drawable.ic_account,
+                    icon = R.drawable.ic_account,
                     id = ID_ACCOUNT,
-                    text = R.string.title_profile,
-                    count = R.string.empty_value
+                    text = getString(R.string.title_profile),
                 )
             )
 
             // If you want to change count
-            setCount(ID_NOTIFICATION, R.string.count_update)
+            setCount(ID_NOTIFICATION, 10)
 
             setOnShowListener {
                 val name = when (it.id) {
@@ -157,38 +154,34 @@ class MainActivity : AppCompatActivity() {
         val menuItems = arrayOf(
             Model(
                 icon = R.drawable.ic_home,
-                destinationId = R.id.navigation_home,
+                navId = R.id.navigation_home,
                 id = 0,
-                text = R.string.title_home,
-                count = R.string.empty_value
+                text = getString(R.string.title_home)
             ),
             Model(
-                R.drawable.ic_favorite_border_black,
-                R.id.navigation_favorite,
+                icon = R.drawable.ic_favorite_border_black,
+                navId = R.id.navigation_favorite,
                 id = 1,
-                R.string.title_favorite,
-                R.string.empty_value
+                text = getString(R.string.title_favorite)
             ),
             Model(
-                R.drawable.ic_message,
-                R.id.navigation_chat,
-                2,
-                R.string.title_chat,
-                R.string.empty_value
+                icon = R.drawable.ic_message,
+                navId = R.id.navigation_chat,
+                id = 2,
+                text = getString(R.string.title_chat),
             ),
             Model(
-                R.drawable.ic_notification,
-                R.id.navigation_notifications,
-                3,
-                R.string.title_notifications,
-                R.string.count
+                icon = R.drawable.ic_notification,
+                navId = R.id.navigation_notifications,
+                id = 3,
+                text = getString(R.string.title_notifications),
+                badge = 5
             ),
             Model(
-                R.drawable.ic_account,
-                R.id.navigation_profile,
-                4,
-                R.string.title_profile,
-                R.string.empty_value
+                icon = R.drawable.ic_account,
+                navId = R.id.navigation_profile,
+                id = 4,
+                text = getString(R.string.title_profile),
             )
         )
 
@@ -201,7 +194,7 @@ class MainActivity : AppCompatActivity() {
             // onMenuItemClick(4)
 
             // If you want to change notification count
-            setCount(ID_NOTIFICATION, R.string.count_update)
+            setCount(ID_NOTIFICATION, 100)
         }
 
     }
