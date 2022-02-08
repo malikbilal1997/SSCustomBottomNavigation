@@ -57,7 +57,7 @@
             app:ss_circleColor="#ff6f00"
             app:ss_countBackgroundColor="#ff6f00"
             app:ss_countTypeface="fonts/graphik_semibold.ttf"
-            app:ss_defaultIconColor="@color/color_black"
+            app:ss_defaultIconColor="@color/colorPrimary"
             app:ss_iconTextColor="@color/color_black"
             app:ss_iconTextSize="12sp"
             app:ss_iconTextTypeface="fonts/graphik_semibold.ttf"

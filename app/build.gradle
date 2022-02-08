@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 32
@@ -25,10 +26,9 @@ android {
         jvmTarget = '11'
     }
 
-    dataBinding {
-        enabled true
+    buildFeatures {
+        dataBinding true
     }
-
 }
 
 dependencies {
